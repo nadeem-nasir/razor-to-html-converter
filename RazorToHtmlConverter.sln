@@ -1,0 +1,60 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "deploy", "deploy", "{0453E13F-544A-4556-ADE3-16D813136400}"
+	ProjectSection(SolutionItems) = preProject
+		deploy\build.yaml = deploy\build.yaml
+		deploy\pipeline.yaml = deploy\pipeline.yaml
+		deploy\release.yaml = deploy\release.yaml
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "doc", "doc", "{DC60E117-3424-4CFE-8C60-4BA9638A708F}"
+	ProjectSection(SolutionItems) = preProject
+		doc\README.md = doc\README.md
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "infra", "infra", "{36E72A46-DE6A-4A30-81E6-5344371F003F}"
+	ProjectSection(SolutionItems) = preProject
+		infra\mktg-showcase-razor-to-html-converter-dev-deployment-scripts.ps1 = infra\mktg-showcase-razor-to-html-converter-dev-deployment-scripts.ps1
+		infra\mktg-showcase-razor-to-html-converter-main-dev.bicepparam = infra\mktg-showcase-razor-to-html-converter-main-dev.bicepparam
+		infra\mktg-showcase-razor-to-html-converter-main.bicep = infra\mktg-showcase-razor-to-html-converter-main.bicep
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{91260547-EA81-4B24-8A3B-0404E18CA7F6}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{1066FB05-4C72-47C8-8DED-B4A022D313C3}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "AzureFuncs.RazorToHtmlConverterFunctions", "src\AzureFuncs.RazorToHtmlConverterFunctions\AzureFuncs.RazorToHtmlConverterFunctions.csproj", "{BFFB0015-905E-48AA-9CB7-BA58A288037A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "templates", "templates", "{2E816335-A17F-433D-A296-F1F3500CCC66}"
+	ProjectSection(SolutionItems) = preProject
+		infra\templates\function-app.bicep = infra\templates\function-app.bicep
+		infra\templates\hosting-plan.bicep = infra\templates\hosting-plan.bicep
+		infra\templates\storage-account.bicep = infra\templates\storage-account.bicep
+		infra\templates\storage-accounts-role-assignments.bicep = infra\templates\storage-accounts-role-assignments.bicep
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{BFFB0015-905E-48AA-9CB7-BA58A288037A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BFFB0015-905E-48AA-9CB7-BA58A288037A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BFFB0015-905E-48AA-9CB7-BA58A288037A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BFFB0015-905E-48AA-9CB7-BA58A288037A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BFFB0015-905E-48AA-9CB7-BA58A288037A} = {91260547-EA81-4B24-8A3B-0404E18CA7F6}
+		{2E816335-A17F-433D-A296-F1F3500CCC66} = {36E72A46-DE6A-4A30-81E6-5344371F003F}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BB162EBB-700E-412E-BFAA-6928D70809C9}
+	EndGlobalSection
+EndGlobal

@@ -1,0 +1,242 @@
+﻿@model AzureFuncs.RazorToHtmlConverterFunctions.Models.InvoiceViewModel
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width" />
+    <title></title>
+    <style>
+        .invoice-container {
+            font-family: "HelveticaNeue-Light", "Helvetica Neue Light", "Helvetica Neue", Helvetica, Arial, "Lucida Grande", sans-serif;
+            letter-spacing: 0.5px;
+        }
+
+        .content {
+            height: 67%;
+        }
+
+        .content-large {
+            height: 88%;
+        }
+
+        .footer {
+            height: 4%;
+        }
+        table {
+            border-collapse: collapse;
+        }
+
+        .invoice-container {
+            width: 21cm;
+            height: 29.7cm;
+            margin: 30mm 45mm 30mm 45mm;
+            border: 1px solid #eee;
+            box-shadow: 0 0 10px rgba(0, 0, 0, .15);
+            margin: auto;
+            padding: 30px;
+            font-size: 14px;
+            line-height: 20px;
+        }
+
+        .table-td-half {
+            width: 50%;
+        }
+
+        .table-td-full {
+            width: 100%;
+        }
+
+        .table-width-half {
+            width: 50%;
+        }
+
+        .table-width-full {
+            width: 100%;
+        }
+
+        .invoice-number {
+            padding: 10px;
+        }
+
+        .table-height {
+            height: 120px;
+            width: 100%;
+            display: inline-block;
+        }
+
+        .invoice-description {
+            width: 50%;
+        }
+
+        .invoice-quantity {
+            width: 10%
+        }
+
+        .invoice-unit {
+            width: 10%
+        }
+
+        .invoice-sum {
+            width: 20%
+        }
+
+        .invoice-unit-price {
+            width: 10%;
+        }
+
+        .text-success {
+            color: #18a096 !important;
+        }
+
+        .footer {
+            margin-top: 1%;
+            margin-bottom: 2%;
+            width: 21cm;
+        }
+    </style>
+</head>
+<body>
+    <!-- invoice-->
+    <div>
+        <div class="invoice-container">
+            <div class="content">
+                <div class="table-height">
+                    <table class="table-width-half" align="left">
+                        <tr>
+                            <td class="table-td-width ">
+                                Demo invoice
+                            </td>
+                        </tr>
+                    </table>
+                    <table class="table-width-half" align="right">
+                        <tr>
+                            <td class="table-td-full invoice-number" align="center">
+                                <label>INVOICE  @Model.InvoiceId </label>
+                            </td>
+                        </tr>
+                        <tr class="table-td-full">
+                            <td>
+                                <table border="1" class="table-td-full">
+                                    <tr>
+                                        <td width="15%" align="center">Page</td>
+                                        <td width="40%" align="center">Date</td>
+                                        <td width="45%" align="center">Customer#</td>
+                                    </tr>
+                                    <tr>
+                                        <td width="15%" align="center">1</td>
+                                        <td width="40%" align="center">@Model.InvoiceDueDate.ToString("yyyy-MM-dd")</td>
+                                        <td width="45%" align="center">@Model.Client?.ClientId</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div>
+                    <table class="table-width-full">
+                        <tr>
+                            <td align="left" width="50%">
+                                Our reference: <br>
+                                @Model.User?.FirstName @Model.User?.LastName <br>
+                                @Model.User?.Email <br>
+                                Your reference:<br />
+                                @Model.Client?.Reference <br />
+                                Customer email:@Model.Client?.BillingEmail  <br>
+                            </td>
+                            <td align="left" width="50%" style="vertical-align:top;">
+                                @Model.Client?.CompanyName<br>
+                                @Model.Client?.OrganisationNumber
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="2">
+                                Payment terms: @Model.InvoiceExpireTermValue  days <br />
+                                Due Date:  @Model.InvoiceDueDate.ToString("yyyy-MM-dd")<br />
+                                Interest: 7 %
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="invoice-details">
+                    <table class="table-width-full" border="1" style="margin-top:2%;" cellpadding="0" cellspacing="0">
+                        <tr>
+                            <td class="invoice-description" align="center">Work descriptions</td>
+                            <td class="invoice-quantity" align="center">Quantity</td>
+                            <td class="invoice-unit" align="center">Unit</td>
+                            <td class="invoice-unit-price" align="center">Price</td>
+                            <td class="invoice-sum" align="center">Amount</td>
+                        </tr>
+                        @if (Model.LineItem != null)
+                        {
+                            @foreach (var line in Model.LineItem)
+                            {
+                                <tr>
+                                    <td class="invoice-description" align="left"> @line.Description</td>
+                                    <td class="invoice-quantity" align="center">@(line.Quantity.GetValueOrDefault())  </td>
+                                    <td class="invoice-unit" align="center">@line.Unit </td>
+                                    <td class="invoice-unit-price" align="center">@(line.Amount)</td>
+                                    <td class="invoice-sum" align="right">@line.GetTotalAmount @Model.CurrencyCode</td>
+                                </tr>
+                            }
+                        }
+                        <tr style="border-bottom:hidden; border-left:hidden;">
+                            <td colspan="2"></td>
+                            <td align="center" colspan="3" class="table-width-full">
+                                <table border="1" class="table-width-full" style=" margin-top: 30%;" cellpadding="0" cellspacing="0">
+                                    <tr>
+                                        <td align="center">To pay</td>
+                                        <td align="center">@Model.InvoiceLineItemTotalAmount @Model.CurrencyCode</td>
+                                    </tr>
+                                </table>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div>
+                <h4>Important, please add the invoice number: @Model.InvoiceId in the reference section of your online payment.</h4>
+            </div>
+            <div class="footer">
+                <table border="1" class="table-width-full footer" style="border:hidden;">
+                    <tr style="border:hidden;">
+                        <td style="border:hidden;">
+                            FREEWORKER.SE <br />
+                            <span class="text-success">URL</span><br />
+                            INFO@FREEWORKER.SE<br />
+                            <span class="text-success">MAIL</span><br />
+                            +46 (0) 779 717 192 <br />
+                            <span class="text-success">PHONE</span> <br />
+                            <br />
+                        </td>
+                        <td style="border:hidden; width:30%">
+                        </td>
+                        <td>
+                            BIC/SWIFT CODE: CTBAAU2S <br />
+                            IBAN: SE9344627124327983532139 <br />
+                            BANK NAME:Swedbank <br />
+                            CITY: Stockholm<br />
+                            COUNTRY:Sweden<br />
+                            <span class="text-success">BANK</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="border:hidden;">
+                            <br />
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" style="border:hidden;">
+                            <span style="margin-left:9%"> FREEWORKER Address </span> <br />
+                            <span style="margin-left:15%">
+                                STOCKHOLM - COMPANY NO. 2960731 <br />
+                            </span>
+                            <span class="text-success" style="margin-left:38%">ADDRESS</span><br />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <!-- invoice-->
+</body>
+</html>

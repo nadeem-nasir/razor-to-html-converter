@@ -1,0 +1,23 @@
+﻿@model List<AzureFuncs.RazorToHtmlConverterFunctions.Models.Products>
+@{
+    Layout = "_Layout";
+ }
+
+<h2>Products Sale</h2>
+<table>
+    <tr>
+        <th>Product</th>
+        <th>Price</th>
+        <th>Quantity</th>
+        <th>Total</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.Name</td>
+            <td>@item.Price</td>
+            <td>@item.Quantity</td>
+            <td>@item.Total</td>
+        </tr>
+    }
+</table>

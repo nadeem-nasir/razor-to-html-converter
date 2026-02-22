@@ -1,0 +1,13 @@
+﻿global using Microsoft.Azure.Functions.Worker;
+global using Microsoft.Extensions.DependencyInjection;
+global using Microsoft.Extensions.Hosting;
+global using Microsoft.Extensions.Configuration;
+global using AzureFuncs.RazorToHtmlConverterFunctions.Services;
+global using AzureFuncs.RazorToHtmlConverterFunctions.Models;
+global using Microsoft.Azure.Functions.Worker.Http;
+global using Microsoft.Extensions.Logging;
+global using System.Net;
+global using Microsoft.Extensions.FileProviders;
+global using System.Reflection;
+global using AzureFuncs.RazorToHtmlConverterFunctions.Extensions;
+global using Microsoft.AspNetCore.Builder; 
